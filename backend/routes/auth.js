@@ -3,10 +3,11 @@ const router = express.Router();
 const User = require("../models/User");
 
 const { body, validationResult } = require("express-validator");
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const JWT_SECRET='ARUNSAH';
-//create a User using :POST "/api/auth/createuser"  .Doesn't require Auth
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const fetchuser = require("../middleware/fetchuser");
+const JWT_SECRET = "ARUNSAH";
+//create a User route using :POST "/api/auth/createuser"  .Doesn't require Auth
 
 router.post(
   "/createuser",
@@ -36,8 +37,8 @@ router.post(
           .json({ error: "Sorry a user with this email already exists" });
       }
       // to generate salt
-      const salt=await bcrypt.genSalt(10);
-      const secPass= await bcrypt.hash(req.body.password,salt);
+      const salt = await bcrypt.genSalt(10);
+      const secPass = await bcrypt.hash(req.body.password, salt);
       //create a new user
       user = await User.create({
         name: req.body.name,
@@ -49,17 +50,77 @@ router.post(
       //     console.log(err);
       //     res.json({ error: "Please enter a unique value for Email",message:err.message });
       //   });
-      const data={
-        user:{
-            id:user.id,
-        }
-      }
-      const authtoken=jwt.sign(data,JWT_SECRET);
-    //   console.log(jwtData); to know the tokens
-      res.json({authtoken});
+      const data = {
+        user: {
+          id: user.id,
+        },
+      };
+      const authtoken = jwt.sign(data, JWT_SECRET);
+      //   console.log(jwtData); to know the tokens
+      res.json({ authtoken });
     } catch (error) {
-        console.error(error.message);
-        res.status(500).send("some errors occurred");
+      console.error(error.message);
+      res.status(500).send("Internal server errors occurred");
+    }
+  }
+);
+
+//Authenticate a user route using Post "/api/auth/login"
+
+router.post(
+  "/login",
+  [
+    body("email", "Enter a valid email").isEmail(),
+    body("password", "Password Cannot be blank").exists(),
+  ],
+  async (req, res) => {
+    // if there are errors return bad request and the errors
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    const { email, password } = req.body;
+    try {
+      let user = await User.findOne({ email });
+      if (!user) {
+        return res
+          .status(400)
+          .json({ error: "Please try to login with correct credentials" });
+      }
+
+      const passwordCompare = await bcrypt.compare(password, user.password);
+      if (!passwordCompare) {
+        return res
+          .status(400)
+          .json({ error: "Please try to login with correct credentials" });
+      }
+      //if logins are correct
+      const data = {
+        user: {
+          id: user.id,
+        },
+      };
+      const authtoken = jwt.sign(data, JWT_SECRET);
+      res.json({ authtoken });
+    } catch (error) {
+      console.error(error.message);
+      res.status(500).send("Internal server errors occurred");
+    }
+  }
+);
+
+// Route 3 : get loged in user details using post . Login required
+//fetchuser is middleware that is used to fetch
+router.post(
+  "/getuser",fetchuser,
+  async (req, res) => {
+    try {
+      const userId = req.user;
+      const user = await User.findById(userId.id).select("-password");
+      res.send(user);
+    } catch (error) {
+      console.error(error.message);
+      res.status(500).send("Internal server errors occurred");
     }
   }
 );
