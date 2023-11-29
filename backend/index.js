@@ -1,6 +1,7 @@
 const connectToMongo = require('./db');
 const express = require("express");
 connectToMongo();
+var cors=require('cors');
 const app = express();
 const port = 5000;//default 3000 port is used but there we are going to run react app
 
@@ -8,7 +9,7 @@ const port = 5000;//default 3000 port is used but there we are going to run reac
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
-
+app.use(cors());
 app.use(express.json())
 
 app.use('/api/auth',require('./routes/auth'));
