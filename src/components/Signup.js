@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Signup = () => {
+const Signup = (props) => {
   const [credentials, setCredentials] = useState({
     name: "",
     email: "",
@@ -22,21 +22,22 @@ const Signup = () => {
     });
     const json = await response.json();
     console.log(json);
-    if(json.success){
+    if (json.success) {
       //Save the auth token and redirect
-      localStorage.setItem('token',json.authtoken);
+      localStorage.setItem("token", json.authtoken);
       // history or navigate hook
       history("/");
-    }
-    else{
-      alert("Invalid Credentials");
+      props.showAlert("Account Created Successfully", "success");
+    } else {
+      props.showAlert("Invalid Details", "danger");
     }
   };
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
   return (
-    <div className="container">
+    <div className="container mt-2">
+      <h2 className="my-2">Create an account to use iNotebook</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="name" className="form-label">
@@ -77,7 +78,8 @@ const Signup = () => {
             id="password"
             name="password"
             onChange={onChange}
-            minLength={5} required
+            minLength={5}
+            required
           />
         </div>
         <div className="mb-3">
@@ -90,7 +92,8 @@ const Signup = () => {
             id="cpassword"
             name="cpassword"
             onChange={onChange}
-            minLength={5} required
+            minLength={5}
+            required
           />
         </div>
         <button type="submit" className="btn btn-primary">
