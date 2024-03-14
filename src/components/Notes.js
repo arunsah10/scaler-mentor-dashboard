@@ -20,16 +20,16 @@ const Notes = (props) => {
   
   const ref = useRef(null);
   const refClose = useRef(null);
-  const [note, setNote] = useState({id:"", etitle: "", edescription: "", etag: "" });
+  const [note, setNote] = useState({id:"", eName: "", eEmail: "", ePhone_Number: "" });
 
   const updateNote = (currentNote) => {
     ref.current.click();
     // to populated the initial entries in the modal
-    setNote({id:currentNote._id,etitle:currentNote.title,edescription:currentNote.description,etag:currentNote.tag});
+    setNote({id:currentNote._id,eName:currentNote.Name,eEmail:currentNote.Email,ePhone_Number:currentNote.Phone_Number});
   };
 
   const handleClick = (e) => {
-    editNote(note.id,note.etitle,note.edescription,note.etag);
+    editNote(note.id,note.eName,note.eEmail,note.ePhone_Number);
     refClose.current.click();
     props.showAlert("Updated Sucessfully","success");
   };
@@ -60,7 +60,7 @@ const Notes = (props) => {
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h1 className="modal-title fs-5" id="exampleModalLabel">
+              <h1 className="modal-Name fs-5" id="exampleModalLabel">
                 Edit Note
               </h1>
               <button
@@ -73,44 +73,44 @@ const Notes = (props) => {
             <div className="modal-body">
               <form className="my-3">
                 <div className="mb-3">
-                  <label htmlFor="title" className="form-label">
-                    Title
+                  <label htmlFor="Name" className="form-label">
+                    Name
                   </label>
                   <input
                     type="text"
                     className="form-control"
-                    id="etitle"
-                    name="etitle"
-                    value={note.etitle}
-                    aria-describedby="title"
+                    id="eName"
+                    name="eName"
+                    value={note.eName}
+                    aria-describedby="Name"
                     onChange={onChange}
                     minLength={5 } required
                   />
                 </div>
                 <div className="mb-3">
-                  <label htmlFor="description" className="form-label">
-                    Description
+                  <label htmlFor="Email" className="form-label">
+                    Email
                   </label>
                   <input
                     type="text"
                     className="form-control"
-                    value={note.edescription}
-                    name="edescription"
-                    id="edescription"
+                    value={note.eEmail}
+                    name="eEmail"
+                    id="eEmail"
                     onChange={onChange}
                     minLength={8 } required
                   />
                 </div>
                 <div className="mb-3">
-                  <label htmlFor="tag" className="form-label">
-                    Tag
+                  <label htmlFor="Phone_Number" className="form-label">
+                    Phone_Number
                   </label>
                   <input
                     type="text"
                     className="form-control"
-                    value={note.etag}
-                    name="etag"
-                    id="etag"
+                    value={note.ePhone_Number}
+                    name="ePhone_Number"
+                    id="ePhone_Number"
                     onChange={onChange}
                     minLength={5 } required
                   />
@@ -125,7 +125,7 @@ const Notes = (props) => {
               >
                 Close
               </button>
-              <button disabled={note.etitle.length<5 || note.edescription.length<8} onClick={handleClick} type="button" className="btn btn-primary">
+              <button disabled={note.eName.length<5 || note.eEmail.length<8} onClick={handleClick} type="button" className="btn btn-primary">
                 Update Note
               </button>
             </div>
@@ -134,7 +134,7 @@ const Notes = (props) => {
       </div>
 
       <div className="row my-3">
-        <h2>Your Notes</h2>
+        <h2>Students</h2>
         <div className="container">
         {notes.length===0 && 'No Notes to display'}
         </div>

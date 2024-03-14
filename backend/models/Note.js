@@ -7,15 +7,15 @@ const NotesSchema = new Schema({
     // to reference schema user
     ref:'user'
   },
-  title: {
+  Name: {
     type: String,
     required: true,
   },
-  description: {
+  Email: {
     type: String,
     default: "general",
   },
-  tag: {
+  Phone_Number: {
     type: String,
     required: true,
   },

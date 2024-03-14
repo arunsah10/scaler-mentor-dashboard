@@ -22,10 +22,10 @@ router.post(
   "/addnote",
   fetchuser,
   [
-    body("title", "Enter a valid title").isLength({ min: 5 }),
+    body("Name", "Enter a valid Name").isLength({ min: 5 }),
     body(
-      "description",
-      "Description must be with 10 charcters minimum"
+      "Email",
+      "Email must be with 10 charcters minimum"
     ).isLength({
       min: 10,
     }),
@@ -33,16 +33,16 @@ router.post(
   async (req, res) => {
     try {
       // destructuring concpept
-      const { title, description, tag } = req.body;
+      const { Name, Email, Phone_Number } = req.body;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
       }
       // this will return a promise
       const note = new Note({
-        title,
-        description,
-        tag,
+        Name,
+        Email,
+        Phone_Number,
         user: req.user.id,
       });
       const savedNote = await note.save();
@@ -61,18 +61,18 @@ router.put(
   fetchuser,
   async (req, res) => {
     //destructuting all the entries
-    const { title, description, tag } = req.body;
+    const { Name, Email, Phone_Number } = req.body;
     try {
       //create new object note
       const newNote = {};
-      if (title) {
-        newNote.title = title;
+      if (Name) {
+        newNote.Name = Name;
       }
-      if (description) {
-        newNote.description = description;
+      if (Email) {
+        newNote.Email = Email;
       }
-      if (tag) {
-        newNote.tag = tag;
+      if (Phone_Number) {
+        newNote.Phone_Number = Phone_Number;
       }
       // find the node to be updated and update it
       let note = await Note.findById(req.params.id);
