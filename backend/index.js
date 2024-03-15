@@ -9,7 +9,13 @@ const port = 5000;//default 3000 port is used but there we are going to run reac
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
-app.use(cors());
+app.use(cors(
+      {
+        origin: ["https://deploy-mern-frontend.vercel.app"],
+        methods: ["POST", "GET"],
+        credentials: true
+    }
+));
 app.use(express.json())
 
 app.use('/api/auth',require('./routes/auth'));
