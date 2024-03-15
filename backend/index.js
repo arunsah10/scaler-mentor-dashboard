@@ -10,11 +10,11 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 app.use(cors(
-      {
-        origin: ["https://deploy-mern-frontend.vercel.app"],
+{
+        origin: ["https://deploy-mern-lwhq.vercel.app"],
         methods: ["POST", "GET"],
         credentials: true
-    }
+  }
 ));
 app.use(express.json())
 
