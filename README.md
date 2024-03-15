@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+# Evaluation Dashboard System 🧑‍💻
+> This Evaluation Dashboard project is designed to provide a platform for mentors to manage student evaluations securely and efficiently. Mentors can either log in using their credentials or sign up if they are new users. Once authenticated, mentors can add students to their dashboard and assign marks based on project criteria such as ideation, execution, presentation, communication, and viva. The system ensures privacy by allowing each mentor to view and evaluate only their own students, maintaining confidentiality and fairness. The dashboard also calculates the total marks obtained by each student automatically, providing mentors with comprehensive insights into student performance. Overall, the project streamlines the evaluation process while prioritizing data security and user authentication for a seamless user experience.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of Contents
+* [What it does ⚙️](#what_it_does)
+* [How I built it 🛠️](#built)
+* [Challenges I ran into 😓](#challenges)
+* [Accomplishments that I am proud of 🏅](#accomplishments)
+* [What I learned 🎓](#learning)
+* [What's next for Evaluation Dashboard 🔜](#what-next)
+* [Screenshots 🖼️](#screenshots)
+* [Contact 📩](#contact)
 
-## Available Scripts
+## What it does ⚙️
+The Evaluation Dashboard View project provides a platform for mentors to manage student evaluations securely and efficiently. Mentors can log in using their credentials or sign up as new users. Once authenticated, mentors can add students to their dashboard and assign marks based on project criteria such as ideation, execution, presentation, communication, and viva. The system automatically calculates the total marks obtained by each student, providing comprehensive insights into student performance.
 
-In the project directory, you can run:
+## How we built it 🛠️
+- I built the Evaluation Dashboard View project using a combination of frontend and backend technologies. The frontend was developed using HTML, CSS, and JavaScript, providing a user-friendly interface for mentors to interact with.
+- For the backend, I used technologies like Node.js and Express.js to handle user authentication, data storage, and calculations for total marks. I also integrated a database system such as MongoDB to store student and evaluation data securely.
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Challenges I ran into 😓
+One of the major challenges I encountered was deploying the application and connecting the frontend with the backend seamlessly. This required configuring server settings, managing dependencies, and resolving compatibility issues between different technologies. However, I was only able to deploy the server side but frontend part got some disfunctionalities.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## Accomplishments that I am proud of 🏅
+I am proud of creating a functional and secure platform that meets the needs of mentors for managing student evaluations. Our system not only facilitates the evaluation process but also ensures data privacy and confidentiality, which are crucial aspects of educational platforms. Additionally, I am proud of collaboration and problem-solving skills that enabled me to tackle challenges effectively.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## What I learned 🎓
+Through this project, I gained valuable experience in full-stack web development, including frontend design, backend development, database management, and deployment processes. I learned how to integrate user authentication, handle data securely, and create a responsive and intuitive user interface. These skills are essential in building robust and user-friendly web applications.
 
-### `npm run build`
+## What's next for Evaluation Dashboard 🔜
+In the future, I plan to enhance the Evaluation Dashboard View project by adding more features such as real-time notifications for mentors and students, data analytics tools for performance analysis, and collaboration features. I also aim to optimize the application for scalability and performance to accommodate a larger user base and handle increased data volumes effectively. Overall, I am committed to continuously improving the platform to provide an exceptional user experience for mentors and students alike.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Screenshots 🖼️
+![Signup](./image1.png)
+![Main1](./image2.png)
+![Main2](./image3.png)
+![Main3](./image4.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Contact 📩
+Created by: [@arunkumarsah](https://www.linkedin.com/in/arunsah10/)
