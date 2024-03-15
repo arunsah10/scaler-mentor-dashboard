@@ -15,7 +15,7 @@
 The Evaluation Dashboard View project provides a platform for mentors to manage student evaluations securely and efficiently. Mentors can log in using their credentials or sign up as new users. Once authenticated, mentors can add students to their dashboard and assign marks based on project criteria such as ideation, execution, presentation, communication, and viva. The system automatically calculates the total marks obtained by each student, providing comprehensive insights into student performance.
 
 ## How I built it 🛠️
-- I built the Evaluation Dashboard View project using a combination of frontend and backend technologies. The frontend was developed using HTML, CSS, and JavaScript, providing a user-friendly interface for mentors to interact with.
+- I built the Evaluation Dashboard View project using a combination of frontend and backend technologies. The frontend was developed using ReactJS, HTML, CSS, and JavaScript, providing a user-friendly interface for mentors to interact with.
 - For the backend, I used technologies like Node.js and Express.js to handle user authentication, data storage, and calculations for total marks. I also integrated a database system such as MongoDB to store student and evaluation data securely.
 
 
