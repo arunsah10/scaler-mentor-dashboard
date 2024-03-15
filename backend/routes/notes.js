@@ -23,17 +23,23 @@ router.post(
   fetchuser,
   [
     body("Name", "Enter a valid Name").isLength({ min: 5 }),
-    body(
-      "Email",
-      "Email must be with 10 charcters minimum"
-    ).isLength({
+    body("Email", "Email must be with 10 charcters minimum").isLength({
       min: 10,
     }),
   ],
   async (req, res) => {
     try {
       // destructuring concpept
-      const { Name, Email, Phone_Number } = req.body;
+      const {
+        Name,
+        Email,
+        Phone_Number,
+        Ideation,
+        Execution,
+        Presentation,
+        Communication,
+        Viva,
+      } = req.body;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
@@ -43,6 +49,11 @@ router.post(
         Name,
         Email,
         Phone_Number,
+        Ideation,
+        Execution,
+        Presentation,
+        Communication,
+        Viva,
         user: req.user.id,
       });
       const savedNote = await note.save();
@@ -61,7 +72,16 @@ router.put(
   fetchuser,
   async (req, res) => {
     //destructuting all the entries
-    const { Name, Email, Phone_Number } = req.body;
+    const {
+      Name,
+      Email,
+      Phone_Number,
+      Ideation,
+        Execution,
+        Presentation,
+        Communication,
+        Viva,
+    } = req.body;
     try {
       //create new object note
       const newNote = {};
@@ -74,6 +94,23 @@ router.put(
       if (Phone_Number) {
         newNote.Phone_Number = Phone_Number;
       }
+      if (Ideation) {
+        newNote.Ideation = Ideation;
+      }
+      if (Execution) {
+        newNote.Execution = Execution;
+      }
+      if (Presentation) {
+        newNote.Presentation = Presentation;
+      }
+      if (Communication) {
+        newNote.Communication= Communication;
+      }
+      if (Viva) {
+        newNote.Viva= Viva;
+      }
+
+
       // find the node to be updated and update it
       let note = await Note.findById(req.params.id);
       if (!note) {

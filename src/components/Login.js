@@ -36,7 +36,7 @@ const Login = (props) => {
   };
   return (
     <div className="mt-3">
-      <h2>Login to Continue to iNotebook</h2>
+      <h2>Login to Continue to Dashboard</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="email" className="form-label">

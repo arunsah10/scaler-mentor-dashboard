@@ -19,9 +19,20 @@ const NotesSchema = new Schema({
     type: String,
     required: true,
   },
-  date: {
-    type: Date,
-    default: Date.now,
+  Ideation :{
+    type:Number,
+  },
+  Execution : {
+    type:Number,
+  },
+  Presentation: {
+    type:Number,
+  },
+  Communication: {
+    type:Number,
+  },
+  Viva:{
+    type:Number,
   },
 });
 

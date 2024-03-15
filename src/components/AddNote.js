@@ -3,13 +3,40 @@ import noteContext from "../context/notes/noteContext";
 const AddNote = (props) => {
   const context = useContext(noteContext);
   const { addNote } = context;
-  const [note, setNote] = useState({ Name: "", Email: "", Phone_Number: "" });
+  const [note, setNote] = useState({
+    Name: "",
+    Email: "",
+    Phone_Number: "",
+    Ideation: 0,
+    Execution: 0,
+    Presentation: 0,
+    Communication: 0,
+    Viva: 0,
+  });
 
   const handleClick = (e) => {
     e.preventDefault();
-    addNote(note.Name, note.Email, note.Phone_Number);
-    setNote({ Name: "", Email: "", Phone_Number: "" });
-    props.showAlert("Added Sucessfully","success");
+    addNote(
+      note.Name,
+      note.Email,
+      note.Phone_Number,
+      note.Ideation,
+      note.Execution,
+      note.Presentation,
+      note.Communication,
+      note.Viva
+    );
+    setNote({
+      Name: "",
+      Email: "",
+      Phone_Number: "",
+      Ideation: 0,
+      Execution: 0,
+      Presentation: 0,
+      Communication: 0,
+      Viva: 0,
+    });
+    props.showAlert("Added Sucessfully", "success");
   };
 
   const onChange = (e) => {
@@ -32,7 +59,8 @@ const AddNote = (props) => {
               aria-describedby="Name"
               onChange={onChange}
               value={note.Name}
-              minLength={5 } required
+              minLength={5}
+              required
             />
           </div>
           <div className="mb-3">
@@ -46,7 +74,8 @@ const AddNote = (props) => {
               id="Email"
               onChange={onChange}
               value={note.Email}
-              minLength={5 } required
+              minLength={5}
+              required
             />
           </div>
           <div className="mb-3">
@@ -60,11 +89,97 @@ const AddNote = (props) => {
               id="Phone_Number"
               onChange={onChange}
               value={note.Phone_Number}
-              minLength={5 } required
+              minLength={5}
+              required
             />
+            <div className="mb-3">
+              <label htmlFor="Ideation" className="form-label">
+                Ideation Mark
+              </label>
+              <input
+                type="number"
+                className="form-control"
+                name="Ideation"
+                id="Ideation"
+                onChange={onChange}
+                value={note.Ideation}
+                min={0} // Minimum value allowed (optional)
+                max={100} // Maximum value allowed (optional)
+                required
+              />
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="Execution" className="form-label">
+                Execution Mark
+              </label>
+              <input
+                type="number"
+                className="form-control"
+                name="Execution"
+                id="Execution"
+                onChange={onChange}
+                value={note.Execution}
+                min={0}
+                max={100}
+                required
+              />
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="Presentation" className="form-label">
+                Presentation Mark
+              </label>
+              <input
+                type="number"
+                className="form-control"
+                name="Presentation"
+                id="Presentation"
+                onChange={onChange}
+                value={note.Presentation}
+                min={0}
+                max={100}
+                required
+              />
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="Communication" className="form-label">
+                Communication Mark
+              </label>
+              <input
+                type="number"
+                className="form-control"
+                name="Communication"
+                id="Communication"
+                onChange={onChange}
+                value={note.Communication}
+                min={0}
+                max={100}
+                required
+              />
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="Viva" className="form-label">
+                Viva Mark
+              </label>
+              <input
+                type="number"
+                className="form-control"
+                name="Viva"
+                id="Viva"
+                onChange={onChange}
+                value={note.Viva}
+                min={0}
+                max={100}
+                required
+              />
+            </div>
+
           </div>
-         
-          <button disabled={note.Name.length<5 || note.Email.length<8}
+          <button
+            disabled={note.Name.length < 3 || note.Email.length < 5}
             type="submit"
             className="btn btn-primary"
             onClick={handleClick}

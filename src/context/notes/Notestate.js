@@ -24,6 +24,7 @@ const NoteState = (props) => {
   const notesInitial = [];
   const [notes, setNotes] = useState(notesInitial);
 
+
   //Get all notes
   const getNotes = async () => {
     //to do api call
@@ -42,7 +43,7 @@ const NoteState = (props) => {
   };
 
   //Add a Student
-  const addNote = async (Name, Email, Phone_Number) => {
+  const addNote = async (Name, Email, Phone_Number,Ideation,Execution,Presentation,Communication,Viva) => {
     //to do api call
     const response = await fetch(`${host}/api/notes/addnote`, {
       method: "POST",
@@ -51,7 +52,7 @@ const NoteState = (props) => {
         "auth-token":
           localStorage.getItem('token'),
       },
-      body: JSON.stringify({ Name, Email, Phone_Number }),
+      body: JSON.stringify({ Name, Email, Phone_Number,Ideation,Execution,Presentation,Communication,Viva }),
     });
     const note=await response.json();
     setNotes(notes.concat(note));
@@ -78,7 +79,7 @@ const NoteState = (props) => {
   };
 
   //Edit a node
-  const editNote = async (id, Name, Email, Phone_Number) => {
+  const editNote = async (id, Name, Email, Phone_Number,Ideation,Execution,Presentation,Communication,Viva) => {
     //API CALL
     const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
       method: "PUT",
@@ -87,7 +88,7 @@ const NoteState = (props) => {
         "auth-token":
           localStorage.getItem('token'),
       },
-      body: JSON.stringify({ Name, Email, Phone_Number }),
+      body: JSON.stringify({ Name, Email, Phone_Number,Ideation,Execution,Presentation,Communication,Viva }),
     });
     const json = await response.json();
     console.log(json);
@@ -100,6 +101,11 @@ const NoteState = (props) => {
         newNotes[index].Name = Name;
         newNotes[index].Email = Email;
         newNotes[index].Phone_Number = Phone_Number;
+        newNotes[index].Ideation = Ideation;
+        newNotes[index].Execution = Execution;
+        newNotes[index].Presentation= Presentation;
+        newNotes[index].Communication = Communication;
+        newNotes[index].Viva = Viva;
         break;
       }
 
@@ -107,8 +113,9 @@ const NoteState = (props) => {
     setNotes(newNotes);
   };
 
+
   return (
-    <NoteContext.Provider value={{ notes, addNote, deleteNote, editNote,getNotes }}>
+    <NoteContext.Provider value={{ notes, addNote, deleteNote, editNote,getNotes ,}}>
       {props.children}
     </NoteContext.Provider>
   );
