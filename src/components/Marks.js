@@ -1,15 +1,15 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import noteContext from "../context/notes/noteContext";
-import Noteitem from "./Noteitem";
-import AddNote from "./AddNote";
+import markContext from "../context/marks/markContext";
+import Markitem from "./Markitem";
+import AddMark from "./AddMark";
 import { useNavigate } from "react-router-dom";
-const Notes = (props) => {
-  const context = useContext(noteContext);
+const Marks = (props) => {
+  const context = useContext(markContext);
   const navigate = useNavigate();
-  const { notes, getNotes, editNote } = context;
+  const { marks, getMarks, editMark } = context;
   useEffect(() => {
     if (localStorage.getItem("token")) {
-      getNotes();
+      getMarks();
     } else {
       navigate("/login");
     }
@@ -18,7 +18,7 @@ const Notes = (props) => {
 
   const ref = useRef(null);
   const refClose = useRef(null);
-  const [note, setNote] = useState({
+  const [mark, setMark] = useState({
     id: "",
     eName: "",
     eEmail: "",
@@ -30,40 +30,40 @@ const Notes = (props) => {
     eViva: 0, // Add eViva
   });
 
-  const updateNote = (currentNote) => {
+  const updateMark = (currentMark) => {
     ref.current.click();
     // to populated the initial entries in the modal
-    setNote({
-      id: currentNote._id,
-      eName: currentNote.Name,
-      eEmail: currentNote.Email,
-      ePhone_Number: currentNote.Phone_Number,
+    setMark({
+      id: currentMark._id,
+      eName: currentMark.Name,
+      eEmail: currentMark.Email,
+      ePhone_Number: currentMark.Phone_Number,
     });
-    setNote({
-      id: currentNote._id,
-      eName: currentNote.Name,
-      eEmail: currentNote.Email,
-      ePhone_Number: currentNote.Phone_Number,
-      eIdeation: currentNote.Ideation, // Initialize with empty value
-      eExecution: currentNote.Execution, // Initialize with empty value
-      ePresentation: currentNote.Presentation, // Initialize with empty value
-      eCommunication: currentNote.Communication, // Initialize with empty value
-      eViva: currentNote.Viva, // Initialize with empty value
+    setMark({
+      id: currentMark._id,
+      eName: currentMark.Name,
+      eEmail: currentMark.Email,
+      ePhone_Number: currentMark.Phone_Number,
+      eIdeation: currentMark.Ideation, // Initialize with empty value
+      eExecution: currentMark.Execution, // Initialize with empty value
+      ePresentation: currentMark.Presentation, // Initialize with empty value
+      eCommunication: currentMark.Communication, // Initialize with empty value
+      eViva: currentMark.Viva, // Initialize with empty value
     });
   };
 
   const handleClick = (e) => {
-    editNote(note.id, note.eName, note.eEmail, note.ePhone_Number,note.eIdeation,note.eExecution,note.ePresentation,note.eExecution,note.eViva);
+    editMark(mark.id, mark.eName, mark.eEmail, mark.ePhone_Number,mark.eIdeation,mark.eExecution,mark.ePresentation,mark.eExecution,mark.eViva);
     refClose.current.click();
     props.showAlert("Updated Sucessfully", "success");
   };
 
   const onChange = (e) => {
-    setNote({ ...note, [e.target.name]: e.target.value });
+    setMark({ ...mark, [e.target.name]: e.target.value });
   };
   return (
     <>
-      <AddNote showAlert={props.showAlert} />
+      <AddMark showAlert={props.showAlert} />
       <button
         ref={ref}
         type="button"
@@ -85,7 +85,7 @@ const Notes = (props) => {
           <div className="modal-content">
             <div className="modal-header">
               <h1 className="modal-Name fs-5" id="exampleModalLabel">
-                Edit Note
+                Edit Mark
               </h1>
               <button
                 type="button"
@@ -105,7 +105,7 @@ const Notes = (props) => {
                     className="form-control"
                     id="eName"
                     name="eName"
-                    value={note.eName}
+                    value={mark.eName}
                     aria-describedby="Name"
                     onChange={onChange}
                     minLength={5}
@@ -119,7 +119,7 @@ const Notes = (props) => {
                   <input
                     type="text"
                     className="form-control"
-                    value={note.eEmail}
+                    value={mark.eEmail}
                     name="eEmail"
                     id="eEmail"
                     onChange={onChange}
@@ -134,7 +134,7 @@ const Notes = (props) => {
                   <input
                     type="text"
                     className="form-control"
-                    value={note.ePhone_Number}
+                    value={mark.ePhone_Number}
                     name="ePhone_Number"
                     id="ePhone_Number"
                     onChange={onChange}
@@ -149,7 +149,7 @@ const Notes = (props) => {
                   <input
                     type="text"
                     className="form-control"
-                    value={note.eIdeation}
+                    value={mark.eIdeation}
                     name="eIdeation"
                     id="eIdeation"
                     onChange={onChange}
@@ -165,7 +165,7 @@ const Notes = (props) => {
                   <input
                     type="text"
                     className="form-control"
-                    value={note.eExecution}
+                    value={mark.eExecution}
                     name="eExecution"
                     id="eExecution"
                     onChange={onChange}
@@ -181,7 +181,7 @@ const Notes = (props) => {
                   <input
                     type="text"
                     className="form-control"
-                    value={note.ePresentation}
+                    value={mark.ePresentation}
                     name="ePresentation"
                     id="ePresentation"
                     onChange={onChange}
@@ -197,7 +197,7 @@ const Notes = (props) => {
                   <input
                     type="text"
                     className="form-control"
-                    value={note.eCommunication}
+                    value={mark.eCommunication}
                     name="eCommunication"
                     id="eCommunication"
                     onChange={onChange}
@@ -213,7 +213,7 @@ const Notes = (props) => {
                   <input
                     type="text"
                     className="form-control"
-                    value={note.eViva}
+                    value={mark.eViva}
                     name="eViva"
                     id="eViva"
                     onChange={onChange}
@@ -233,12 +233,12 @@ const Notes = (props) => {
                 Close
               </button>
               <button
-                disabled={note.eName.length < 5 || note.eEmail.length < 8}
+                disabled={mark.eName.length < 5 || mark.eEmail.length < 8}
                 onClick={handleClick}
                 type="button"
                 className="btn btn-primary"
               >
-                Update Note
+                Update mark
               </button>
             </div>
           </div>
@@ -248,14 +248,14 @@ const Notes = (props) => {
       <div className="row my-3">
         <h2>Students</h2>
         <div className="container">
-          {notes.length === 0 && "No Students Addded"}
+          {marks.length === 0 && "No Students Addded"}
         </div>
-        {notes.map((note) => {
+        {marks.map((mark) => {
           return (
-            <Noteitem
-              key={note._id}
-              updateNote={updateNote}
-              note={note}
+            <Markitem
+              key={mark._id}
+              updateMark={updateMark}
+              mark={mark}
               showAlert={props.showAlert}
             />
           );
@@ -265,4 +265,4 @@ const Notes = (props) => {
   );
 };
 
-export default Notes;
+export default Marks;

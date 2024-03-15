@@ -1,11 +1,11 @@
 import React from "react";
-// import noteContext from "../context/notes/noteContext";
-import Notes from "./Notes";
+// import markContext from "../context/marks/markContext";
+import Marks from "./Marks";
 const Home = (props) => {
   const {showAlert}=props;
   return (
     <div>
-      <Notes showAlert={showAlert}/>
+      <Marks showAlert={showAlert}/>
     </div>
   );
 };

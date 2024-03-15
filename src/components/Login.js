@@ -37,6 +37,7 @@ const Login = (props) => {
   return (
     <div className="mt-3">
       <h2>Login to Continue to Dashboard</h2>
+      <p>You can signup and then login or else see some credentials given in about page</p>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="email" className="form-label">

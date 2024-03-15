@@ -13,10 +13,10 @@ app.use(cors());
 app.use(express.json())
 
 app.use('/api/auth',require('./routes/auth'));
-app.use('/api/notes',require('./routes/notes'));
+app.use('/api/marks',require('./routes/marks'));
 
 app.listen(port, () => {
-  console.log(`iNotebook app listening on port http://localhost:${port}`);
+  console.log(`Mentor Dashboardbook app listening on port http://localhost:${port}`);
 });
 
 

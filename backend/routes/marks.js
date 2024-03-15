@@ -1,25 +1,25 @@
 const express = require("express");
 const router = express.Router();
 const fetchuser = require("../middleware/fetchuser");
-const Note = require("../models/Note");
+const Mark = require("../models/Mark");
 
 const { body, validationResult } = require("express-validator");
 
-// Route 1 : Get all the notes using : GET "/api/notes/getuser" .login is required
-router.get("/fetchallnotes", fetchuser, async (req, res) => {
+// Route 1 : Get all the marks using : GET "/api/marks/getuser" .login is required
+router.get("/fetchallmarks", fetchuser, async (req, res) => {
   try {
-    const notes = await Note.find({ user: req.user.id });
-    res.json(notes);
+    const marks = await Mark.find({ user: req.user.id });
+    res.json(marks);
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Internal server errors occurred");
   }
 });
 
-// Route 2: Add a new note using :POST "/api/notes/addnote" .login is required
-// we need to validate notes also so that unwanted or irrelevant notes will not get stored
+// Route 2: Add a new mark using :POST "/api/marks/addmark" .login is required
+// we need to validate marks also so that unwanted or irrelevant marks will not get stored
 router.post(
-  "/addnote",
+  "/addmark",
   fetchuser,
   [
     body("Name", "Enter a valid Name").isLength({ min: 5 }),
@@ -45,7 +45,7 @@ router.post(
         return res.status(400).json({ errors: errors.array() });
       }
       // this will return a promise
-      const note = new Note({
+      const mark = new Mark({
         Name,
         Email,
         Phone_Number,
@@ -56,8 +56,8 @@ router.post(
         Viva,
         user: req.user.id,
       });
-      const savedNote = await note.save();
-      res.json([savedNote]);
+      const savedmark = await mark.save();
+      res.json([savedmark]);
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Internal server errors occurred");
@@ -65,10 +65,10 @@ router.post(
   }
 );
 
-// Route 3: update an existing Note using  :PUT "/api/notes/updatenote" .login is required
+// Route 3: update an existing Mark using  :PUT "/api/marks/updatemark" .login is required
 
 router.put(
-  "/updatenote/:id", // to verify the user
+  "/updatemark/:id", // to verify the user
   fetchuser,
   async (req, res) => {
     //destructuting all the entries
@@ -83,50 +83,50 @@ router.put(
         Viva,
     } = req.body;
     try {
-      //create new object note
-      const newNote = {};
+      //create new object mark
+      const newmark = {};
       if (Name) {
-        newNote.Name = Name;
+        newmark.Name = Name;
       }
       if (Email) {
-        newNote.Email = Email;
+        newmark.Email = Email;
       }
       if (Phone_Number) {
-        newNote.Phone_Number = Phone_Number;
+        newmark.Phone_Number = Phone_Number;
       }
       if (Ideation) {
-        newNote.Ideation = Ideation;
+        newmark.Ideation = Ideation;
       }
       if (Execution) {
-        newNote.Execution = Execution;
+        newmark.Execution = Execution;
       }
       if (Presentation) {
-        newNote.Presentation = Presentation;
+        newmark.Presentation = Presentation;
       }
       if (Communication) {
-        newNote.Communication= Communication;
+        newmark.Communication= Communication;
       }
       if (Viva) {
-        newNote.Viva= Viva;
+        newmark.Viva= Viva;
       }
 
 
       // find the node to be updated and update it
-      let note = await Note.findById(req.params.id);
-      if (!note) {
+      let mark = await Mark.findById(req.params.id);
+      if (!mark) {
         return res.status(404).send("Not found");
       }
       // if the loged in user wants to change other user details
-      if (note.user.toString() !== req.user.id) {
+      if (mark.user.toString() !== req.user.id) {
         return res.status(401).send("Not allowed");
       }
-      // find the id and passing newNote and new: true means that new content is created
-      note = await Note.findByIdAndUpdate(
+      // find the id and passing newmark and new: true means that new content is created
+      mark = await Mark.findByIdAndUpdate(
         req.params.id,
-        { $set: newNote },
+        { $set: newmark },
         { new: true }
       );
-      res.json({ note });
+      res.json({ mark });
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Internal server errors occurred");
@@ -134,24 +134,24 @@ router.put(
   }
 );
 
-// Route 4:Delete an existing Note using  :DELETE "/api/notes/deletenote" .login is required
+// Route 4:Delete an existing Mark using  :DELETE "/api/marks/deletemark" .login is required
 router.delete(
-  "/deletenote/:id", // to verify the user
+  "/deletemark/:id", // to verify the user
   fetchuser,
   async (req, res) => {
     try {
       // find the node to be deleted and delete it
-      let note = await Note.findById(req.params.id);
-      if (!note) {
+      let mark = await Mark.findById(req.params.id);
+      if (!mark) {
         return res.status(404).send("Not found");
       }
       // ALLOW deletions if users owns this once
-      if (note.user.toString() !== req.user.id) {
+      if (mark.user.toString() !== req.user.id) {
         return res.status(401).send("Not allowed");
       }
-      // find the id and passing newNote and new: true means that new content is created
-      note = await Note.findByIdAndDelete(req.params.id);
-      res.json({ Successfull: " the note has been deleted ", note: note });
+      // find the id and passing newmark and new: true means that new content is created
+      mark = await Mark.findByIdAndDelete(req.params.id);
+      res.json({ Successfull: " the mark has been deleted ", mark: mark });
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Internal server errors occurred");

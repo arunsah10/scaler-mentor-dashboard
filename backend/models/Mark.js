@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const {Schema}=mongoose;
-const NotesSchema = new Schema({
-  // to associate a user with notes like foreign key in sql
+const MarksSchema = new Schema({
+  // to associate a user with marks like foreign key in sql
   user:{
     type:mongoose.Schema.Types.ObjectId,
     // to reference schema user
@@ -36,4 +36,4 @@ const NotesSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model("notes", NotesSchema);
+module.exports = mongoose.model("marks", MarksSchema);

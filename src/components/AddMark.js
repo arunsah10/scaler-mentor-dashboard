@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
-import noteContext from "../context/notes/noteContext";
-const AddNote = (props) => {
-  const context = useContext(noteContext);
-  const { addNote } = context;
-  const [note, setNote] = useState({
+import markContext from "../context/marks/markContext";
+const AddMark = (props) => {
+  const context = useContext(markContext);
+  const { addMark } = context;
+  const [mark, setMark] = useState({
     Name: "",
     Email: "",
     Phone_Number: "",
@@ -16,17 +16,17 @@ const AddNote = (props) => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    addNote(
-      note.Name,
-      note.Email,
-      note.Phone_Number,
-      note.Ideation,
-      note.Execution,
-      note.Presentation,
-      note.Communication,
-      note.Viva
+    addMark(
+      mark.Name,
+      mark.Email,
+      mark.Phone_Number,
+      mark.Ideation,
+      mark.Execution,
+      mark.Presentation,
+      mark.Communication,
+      mark.Viva
     );
-    setNote({
+    setMark({
       Name: "",
       Email: "",
       Phone_Number: "",
@@ -40,7 +40,7 @@ const AddNote = (props) => {
   };
 
   const onChange = (e) => {
-    setNote({ ...note, [e.target.name]: e.target.value });
+    setMark({ ...mark, [e.target.name]: e.target.value });
   };
   return (
     <div>
@@ -58,7 +58,7 @@ const AddNote = (props) => {
               name="Name"
               aria-describedby="Name"
               onChange={onChange}
-              value={note.Name}
+              value={mark.Name}
               minLength={5}
               required
             />
@@ -73,7 +73,7 @@ const AddNote = (props) => {
               name="Email"
               id="Email"
               onChange={onChange}
-              value={note.Email}
+              value={mark.Email}
               minLength={5}
               required
             />
@@ -88,7 +88,7 @@ const AddNote = (props) => {
               name="Phone_Number"
               id="Phone_Number"
               onChange={onChange}
-              value={note.Phone_Number}
+              value={mark.Phone_Number}
               minLength={5}
               required
             />
@@ -102,7 +102,7 @@ const AddNote = (props) => {
                 name="Ideation"
                 id="Ideation"
                 onChange={onChange}
-                value={note.Ideation}
+                value={mark.Ideation}
                 min={0} // Minimum value allowed (optional)
                 max={100} // Maximum value allowed (optional)
                 required
@@ -119,7 +119,7 @@ const AddNote = (props) => {
                 name="Execution"
                 id="Execution"
                 onChange={onChange}
-                value={note.Execution}
+                value={mark.Execution}
                 min={0}
                 max={100}
                 required
@@ -136,7 +136,7 @@ const AddNote = (props) => {
                 name="Presentation"
                 id="Presentation"
                 onChange={onChange}
-                value={note.Presentation}
+                value={mark.Presentation}
                 min={0}
                 max={100}
                 required
@@ -153,7 +153,7 @@ const AddNote = (props) => {
                 name="Communication"
                 id="Communication"
                 onChange={onChange}
-                value={note.Communication}
+                value={mark.Communication}
                 min={0}
                 max={100}
                 required
@@ -170,7 +170,7 @@ const AddNote = (props) => {
                 name="Viva"
                 id="Viva"
                 onChange={onChange}
-                value={note.Viva}
+                value={mark.Viva}
                 min={0}
                 max={100}
                 required
@@ -179,17 +179,19 @@ const AddNote = (props) => {
 
           </div>
           <button
-            disabled={note.Name.length < 3 || note.Email.length < 5}
+            disabled={mark.Name.length < 3 || mark.Email.length < 5}
             type="submit"
             className="btn btn-primary"
             onClick={handleClick}
           >
-            add student
+            Add student Details
           </button>
+
+          
         </form>
       </div>
     </div>
   );
 };
 
-export default AddNote;
+export default AddMark;

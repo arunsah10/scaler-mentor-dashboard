@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import About from "./components/About";
-import NoteState from "./context/notes/Notestate";
+import MarkState from "./context/marks/Markstate";
 import Alert from "./components/Alert";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
@@ -21,8 +21,8 @@ function App() {
   };
   return (
     <>
-      {/* // this will enable all the below components to wrap and use Notestate in any levels to multiple levels */}
-      <NoteState>
+      {/* // this will enable all the below components to wrap and use Markstate in any levels to multiple levels */}
+      <MarkState>
         <Router>
           <Navbar />
           <Alert alert={alert}/>
@@ -42,7 +42,7 @@ function App() {
             </Routes>
           </div>
         </Router>
-      </NoteState>
+      </MarkState>
     </>
   );
 }
